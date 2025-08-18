@@ -1,50 +1,40 @@
-let amigos= [];
+let ingresarNombreLista;
+let listaDeNombre = [];
+let numeroMaximoDeNombres= 0; 
 
-// Agrega un nombre a la lista 
-function asignarAmigo() {
-    const imput = document.getElementById("amigo");;
-    const amigo = input.value.trim();
-    
-    if (!amigo) {
-        alert("Por favor, ingresa un amigo válido.");
-    return;
+function agregarAmigo() {
+        let entradaDeNombre = (document.getElementById('amigo').value);
+        if (entradaDeNombre == ""){
+            alert("Por favor, inserte un nombre.");
+            limpiarCaja();
+        }else{
+            ingresarNombreLista = listaDeNombre.push(entradaDeNombre);
+            limpiarCaja();
+            listaDeAmigos();
+        } 
 }
-
-// Muestra los amigos en la lista 
-function mostrarAmigos(amigos) {
-    const lista = document.getElementById("listaAmigos");
-    if (!lista) return;
-    lista.innerHTML = "";
-    
-for (let i = 0; i < amigos.length; i++) {
-        const li = document.createElement("li");
-        li.textContent = amigos[i];
-        lista.appendChild(li);
+//Limpiar el valor en la caja de entrada
+function limpiarCaja() {
+    let valorCaja = document.querySelector ('#amigo');
+    valorCaja.value = '';
+}
+// Agregar lista de amigos 
+function listaDeAmigos(){
+    let listaParaMostrar = document.querySelector('#listaAmigos');
+    listaParaMostrar.innerHTML ='';
+    for (let i = 0; i < listaDeNombre.length; i++) {
+        listaParaMostrar.innerHTML += `<li>${listaDeNombre[i]}</li>`;
     }
 }
-
-// Sortea un amigo secreto de la lista
-function sortearAmigo() {
-    if (!Array.isArray(amigos) || amigos.length === 0) {
-        alert("La lista está vacía. Agrega aigos antes de sortear.");
-        return;
-    }
-    const indiceAleatorio = Math.floor(Math.random() * amigos.length);
-    const ganador = amigos[indiceAleatorio];
-    const resultado = document.getElementById("resultado");
-    if (resultado) {
-        resultado.textContent = `Amigo Secreto: ${ganador}`;
+// Sortear un amigo secreto
+function sortearAmigo(){
+    numeroMaximoDeNombres = listaDeNombre.length;
+    
+    if (listaDeAmigos !== ""){
+       let nombreSorteado = Math.floor(Math.random()*numeroMaximoDeNombres);
+       let resultadoDeNombre = document.querySelector('#resultado');
+       resultadoDeNombre.innerHTML = `El amigo secreto es: ${listaDeNombre[nombreSorteado]}`
+    }else{
+        alert("Por favor, inserte un nombre.");
     }
 }
-
-// Limpia la lista
-function limpiarAmigos() {
-    amigos = [];
-    const lista = document.getElementById("listaAmigos");
-    const resultado = document.getElementById("resultado");
-    if (lista) lista.innerHTML = "";
-    if (resultado) resultado.innerHTML = "";
-}
-    
-    
-   
