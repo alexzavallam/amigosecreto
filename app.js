@@ -2,7 +2,7 @@ let amigos= [];
 
 // Agrega un nombre a la lista 
 function asignarAmigo() {
-    const imput = document.getElementById("amigo");;
+    const imput = document.getElementById("amigos");;
     const amigo = input.value.trim();
     
     if (!amigo) {
